@@ -1,0 +1,28 @@
+<br>
+<button (click)="this.exportieren()">Exportieren</button>
+<br><div class="fixTableHead">
+  <table>
+    <thead>
+    <tr>
+      <th>Nummer</th>
+      <th>x</th>
+      <th>y</th>
+      <th>z</th>
+      <th>Vorne</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @for (vec of this.getPoints(); track vec; let num = $index) {
+      <tr>
+        <td>Punkt {{ num + 1 }}</td>
+        <td>{{convertVariable(vec.x)}}</td>
+        <td>{{convertVariable(vec.y)}}</td>
+        <td>{{convertVariable(vec.z)}}</td>
+        <td>{{ vec.vorne ? 'vorne' : 'hinten' }}</td>
+      </tr>
+    }
+    </tbody>
+
+  </table>
+</div>

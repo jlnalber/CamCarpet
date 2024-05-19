@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {DataService} from "../data.service";
 import {Punkt, Vector} from "../global/calculator";
 
@@ -10,6 +10,12 @@ import {Punkt, Vector} from "../global/calculator";
   styleUrl: './drawer.component.css'
 })
 export class DrawerComponent implements AfterViewInit {
+
+  @Input() punkte: boolean = true;
+  @Input() bloecke: boolean = true;
+
+  @ViewChild('canv') canv?: ElementRef<HTMLCanvasElement>;
+
   constructor(public readonly dataService: DataService) {
     this.dataService.recalculateEvent.push(() => {
       this.draw();
@@ -17,27 +23,33 @@ export class DrawerComponent implements AfterViewInit {
   }
 
   public draw() {
-    // Get Info about canvas
-    const canvas = document.getElementById('canvas') as HTMLCanvasElement;
-    const factor = 30;
-    const daten = this.dataService.getDaten();
-    canvas.width = Math.abs(daten.rechts - daten.links) * factor;
-    canvas.height = Math.abs(daten.oben - daten.unten) * factor;
-    const rtx = canvas.getContext('2d') as CanvasRenderingContext2D;
+    if (this.canv) {
+      // Get Info about canvas
+      const canvas = this.canv.nativeElement;
+      const factor = 30;
+      const daten = this.dataService.getDaten();
+      canvas.width = Math.abs(daten.rechts - daten.links) * factor;
+      canvas.height = Math.abs(daten.oben - daten.unten) * factor;
+      const rtx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
-    const vecToPoint = (vec: Vector): {
-      x: number,
-      y: number
-    } => {
-      return {
-        x: (vec.x - daten.links) * factor,
-        y: (daten.oben - vec.y) * factor
+      const vecToPoint = (vec: Vector): {
+        x: number,
+        y: number
+      } => {
+        return {
+          x: (vec.x - daten.links) * factor,
+          y: (daten.oben - vec.y) * factor
+        }
+      }
+
+      // draw
+      if (this.bloecke) {
+        this.drawBloecke(rtx, vecToPoint);
+      }
+      if (this.punkte) {
+        this.drawPoints(rtx, vecToPoint);
       }
     }
-
-    // draw
-    this.drawBloecke(rtx, vecToPoint);
-    this.drawPoints(rtx, vecToPoint);
   }
 
   public drawBloecke(rtx: CanvasRenderingContext2D, vecToPoint: (vec: Vector) => Punkt) {

@@ -18,7 +18,10 @@
     <br>
 
     @if (this.dataService.calc) {
+      <app-drawer [punkte]="false"></app-drawer><br>
+      <app-drawer [bloecke]="false"></app-drawer><br>
       <app-drawer></app-drawer>
+      <app-point-view></app-point-view>
     }
 
     <br>

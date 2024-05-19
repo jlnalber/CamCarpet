@@ -49,7 +49,7 @@ export class Calculator {
       }
     }
 
-    console.log(this.allePunkteInKaestchen);
+    //console.log(this.allePunkteInKaestchen);
   }
 
   private calculateAllePunkte3D() {
@@ -80,7 +80,7 @@ export class Calculator {
       // Die Höhe also z muss verschoben werden!
       const actualHeight = meterProKaestchen * n;
       const heightWhenHoehe = meterProKaestchenHoehe * n;
-      const dZ = (heightWhenHoehe - actualHeight) / 2;
+      const dZ = (heightWhenHoehe - actualHeight) / 3;
       const disposZ = dZ - oberstes2DY * meterProKaestchen + h; // Um Höhe nach unten und dZ Verschiebung + oberstes Kästchen sollte ganz oben am Rand liegen!
 
       // Die Höhe also z muss verschoben werden!
@@ -111,7 +111,7 @@ export class Calculator {
         /*const x = this.daten.links + meterProKaestchen * (p.x - linkestes2DX);
         const z = this.daten.hoehe + p.y * meterProKaestchen + dispos;*/
         const res = getXZToPoint(p);
-        this.allePunkte3D.push(new Vector(res.x, this.daten.oben, res.z), new Vector(res.x, v, res.z));
+        this.allePunkte3D.push(new Vector(res.x, this.daten.oben, res.z, false), new Vector(res.x, v, res.z, true));
       }
 
       // Berechne alle 3D-Blöcke!
@@ -135,14 +135,14 @@ export class Calculator {
             })
 
             const block: Block = {
-              ovl: new Vector(ol.x, v, ol.z),
-              ohl: new Vector(ol.x, this.daten.oben, ol.z),
-              ovr: new Vector(or.x, v, or.z),
-              ohr: new Vector(or.x, this.daten.oben, or.z),
-              uvl: new Vector(ul.x, v, ul.z),
-              uvr: new Vector(ur.x, v, ur.z),
-              uhl: new Vector(ul.x, this.daten.oben, ul.z),
-              uhr: new Vector(ur.x, this.daten.oben, ur.z)
+              ovl: new Vector(ol.x, v, ol.z, true),
+              ohl: new Vector(ol.x, this.daten.oben, ol.z, false),
+              ovr: new Vector(or.x, v, or.z, true),
+              ohr: new Vector(or.x, this.daten.oben, or.z, false),
+              uvl: new Vector(ul.x, v, ul.z, true),
+              uvr: new Vector(ur.x, v, ur.z, true),
+              uhl: new Vector(ul.x, this.daten.oben, ul.z, false),
+              uhr: new Vector(ur.x, this.daten.oben, ur.z, false)
             }
 
             this.alleBloecke3D.push(block);
@@ -150,7 +150,7 @@ export class Calculator {
         }
       }
 
-      console.log(this.allePunkte3D, this.alleBloecke3D)
+      //console.log(this.allePunkte3D, this.alleBloecke3D)
     }
   }
 
@@ -158,7 +158,7 @@ export class Calculator {
     if (this.allePunkte3D && this.alleBloecke3D) {
       const mapVector = (p: Vector): Vector => {
         const factor = this.daten.hoehe / p.z;
-        return new Vector(p.x * factor, p.y * factor, this.daten.hoehe);
+        return new Vector(p.x * factor, p.y * factor, this.daten.hoehe, p.vorne);
       }
 
       this.allePunkteBoden = this.allePunkte3D.map(mapVector);
@@ -176,7 +176,7 @@ export class Calculator {
         }
       })
 
-      console.log(this.allePunkteBoden);
+      //console.log(this.allePunkteBoden);
     }
   }
 }
@@ -187,7 +187,7 @@ export type Punkt = {
 }
 
 export class Vector {
-  constructor(public x: number, public y: number, public z: number) { }
+  constructor(public x: number, public y: number, public z: number, public vorne?: boolean | undefined) { }
 
   public equals(vec: Vector): boolean {
     return this.x === vec.x && this.y === vec.y && this.z === vec.z;
