@@ -1,0 +1,27 @@
+.inputBtn {
+  width: 25px;
+  height: 25px;
+  border: none;
+  display: block;
+}
+
+.inputBtn.white {
+  background: white;
+}
+
+.inputBtn.black {
+  background: black;
+}
+
+td {
+  margin: 0;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+}
+
+table, td, th, tr {
+  border: 1px solid black;
+  border-collapse: collapse;
+  border-spacing: 0;
+}

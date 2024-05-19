@@ -1,0 +1,13 @@
+<div class="container">
+  <table cellspacing="0">
+    @for (row of this.dataService.fields; track row; let idy = $index) {
+      <tr>
+        @for (cell of row; track cell; let idx = $index) {
+          <td><button [class]="'inputBtn ' + (cell ? 'black' : 'white')" (click)="dataService.toggleFieldAt(idx, idy)"></button></td>
+        }
+      </tr>
+    }
+  </table><br>
+  <button (click)="dataService.addColumn()">Spalte hinzufügen</button>
+  <button (click)="dataService.addRow()">Zeile hinzufügen</button>
+</div>
