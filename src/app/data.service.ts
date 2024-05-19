@@ -118,7 +118,7 @@ export class DataService {
   }
 
   public berechnen() {
-    this.calc = new Calculator(this.getDaten());
+    this.calc = new Calculator(this.getDaten(), this.fields);
     this.calc.calculate();
     this.recalculateEvent.emit();
   }
