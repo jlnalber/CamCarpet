@@ -54,22 +54,59 @@ export class Calculator {
     if (this.allePunkteInKaestchen) {
       this.allePunkte3D = [];
 
-      // Annahme: Eher die Breite ist das Problem, nicht die Tiefe
+      // Berechne zuerst die maximalen Meter pro Kästchen, wenn es nur um die Breite ginge!
       const maxWidthEbene = Math.abs(this.daten.links - this.daten.rechts);
       const linkestes2DX = Math.min(...this.allePunkteInKaestchen.map(p => p.x));
       const rechtestes2DX = Math.max(...this.allePunkteInKaestchen.map(p => p.x));
-      const meterProKaestchen = maxWidthEbene / (rechtestes2DX - linkestes2DX);
-      const unterstes2DY = Math.max(...this.allePunkteInKaestchen.map(p => p.y)) * meterProKaestchen;
-      const oberstes2DY = Math.min(...this.allePunkteInKaestchen.map(p => p.y)) * meterProKaestchen;
-      const mitteHoehe2D = (unterstes2DY + oberstes2DY) / 2;
+      const meterProKaestchenBreite = maxWidthEbene / (rechtestes2DX - linkestes2DX);
+
+      // Berechne nun die maximalen Meter pro Kästchen, wenn es nur um die Höhe ginge!
+      const unterstes2DY = Math.max(...this.allePunkteInKaestchen.map(p => p.y));
+      const oberstes2DY = Math.min(...this.allePunkteInKaestchen.map(p => p.y));
+      const o = this.daten.oben;
+      const u = this.daten.unten;
+      const h = this.daten.hoehe;
+      const b = this.daten.tiefe;
+      const n = unterstes2DY - oberstes2DY;
+      const meterProKaestchenHoehe = (h*(o/u - 1)) / (h*b/u+n);
+
+      // Nehme das Minimum der beiden!
+      const meterProKaestchen = Math.min(meterProKaestchenBreite, meterProKaestchenHoehe);
+
+      // Berechne entsprechend die Verschiebung
+      // Die Höhe also z muss verschoben werden!
+      const actualHeight = meterProKaestchen * n;
+      const heightWhenHoehe = meterProKaestchenHoehe * n;
+      const dZ = (heightWhenHoehe - actualHeight) / 2;
+      const disposZ = dZ - oberstes2DY * meterProKaestchen + h; // Um Höhe nach unten und dZ Verschiebung + oberstes Kästchen sollte ganz oben am Rand liegen!
+
+      // Die Höhe also z muss verschoben werden!
+      const nBreite = rechtestes2DX - linkestes2DX;
+      const actualWidth = meterProKaestchen * nBreite;
+      const widthWhenBreite = meterProKaestchenBreite * nBreite;
+      const dX = (widthWhenBreite - actualWidth) / 2;
+      const disposX = dX - linkestes2DX * meterProKaestchen + this.daten.links; // Um Höhe nach unten und dZ Verschiebung + oberstes Kästchen sollte ganz oben am Rand liegen!
+
+      /*const mitteHoehe2D = (unterstes2DY + oberstes2DY) / 2 * meterProKaestchen;
       const untersteSicht = this.daten.hoehe * this.daten.oben / this.daten.unten - this.daten.hoehe;
       const mitteHoehe3D = untersteSicht / 2;
-      const dispos = mitteHoehe3D - mitteHoehe2D; // so viel muss also noch nach unten verschoben werden!
+      const dispos = mitteHoehe3D - mitteHoehe2D; // so viel muss also noch nach unten verschoben werden!*/
+
+      const getXZToPoint = (p: Punkt): {
+        x: number,
+        z: number
+      } => {
+        return {
+          x: p.x * meterProKaestchen + disposX,
+          z: p.y * meterProKaestchen + disposZ
+        }
+      }
 
       for (let p of this.allePunkteInKaestchen) {
-        const x = this.daten.links + meterProKaestchen * (p.x - linkestes2DX);
-        const z = this.daten.hoehe + p.y * meterProKaestchen + dispos;
-        this.allePunkte3D.push(new Vector(x, this.daten.oben, z), new Vector(x, this.daten.oben - meterProKaestchen * this.daten.tiefe, z));
+        /*const x = this.daten.links + meterProKaestchen * (p.x - linkestes2DX);
+        const z = this.daten.hoehe + p.y * meterProKaestchen + dispos;*/
+        const res = getXZToPoint(p);
+        this.allePunkte3D.push(new Vector(res.x, this.daten.oben, res.z), new Vector(res.x, this.daten.oben - meterProKaestchen * this.daten.tiefe, res.z));
       }
 
       console.log(this.allePunkte3D)

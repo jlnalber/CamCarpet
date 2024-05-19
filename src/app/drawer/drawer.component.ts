@@ -11,13 +11,16 @@ import {Vector} from "../global/calculator";
 })
 export class DrawerComponent implements AfterViewInit {
   constructor(public readonly dataService: DataService) {
+    this.dataService.recalculateEvent.push(() => {
+      this.draw();
+    })
   }
 
-  public ngAfterViewInit() {
+  public draw() {
     if (this.dataService.calc && this.dataService.calc.allePunkteBoden) {
       const canvas = document.getElementById('canvas') as HTMLCanvasElement;
       const daten = this.dataService.getDaten();
-      const factor = 20;
+      const factor = 30;
       canvas.width = Math.abs(daten.rechts - daten.links) * factor;
       canvas.height = Math.abs(daten.oben - daten.unten) * factor;
 
@@ -46,5 +49,10 @@ export class DrawerComponent implements AfterViewInit {
         rtx.stroke();
       }
     }
+  }
+
+  public ngAfterViewInit()
+  {
+    this.draw();
   }
 }

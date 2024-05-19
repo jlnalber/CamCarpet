@@ -45,6 +45,7 @@ export class DataService {
   public tiefe: number = 0;
 
   public calc: Calculator | undefined;
+  public recalculateEvent: EventHandler = new EventHandler();
 
   constructor() {
     const str = localStorage[speicherort];
@@ -119,6 +120,7 @@ export class DataService {
   public berechnen() {
     this.calc = new Calculator(this.getDaten());
     this.calc.calculate();
+    this.recalculateEvent.emit();
   }
 }
 
@@ -132,4 +134,16 @@ export interface Daten {
   unten: number,
   tiefe: number,
   fields: boolean[][]
+}
+
+class EventHandler {
+  private fs: (() => void)[] = [];
+  public push(f: () => void) {
+    this.fs.push(f);
+  }
+  public emit() {
+    for (let f of this.fs) {
+      f();
+    }
+  }
 }
