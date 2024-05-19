@@ -11,7 +11,7 @@ import {Punkt, Vector} from "../global/calculator";
 })
 export class DrawerComponent implements AfterViewInit {
 
-  @Input() punkte: boolean = true;
+  @Input() punkte: 'nein' | 'vorne' | 'hinten' | 'beides' = 'beides';
   @Input() bloecke: boolean = true;
 
   @ViewChild('canv') canv?: ElementRef<HTMLCanvasElement>;
@@ -46,7 +46,7 @@ export class DrawerComponent implements AfterViewInit {
       if (this.bloecke) {
         this.drawBloecke(rtx, vecToPoint);
       }
-      if (this.punkte) {
+      if (this.punkte !== 'nein') {
         this.drawPoints(rtx, vecToPoint);
       }
     }
@@ -119,13 +119,15 @@ export class DrawerComponent implements AfterViewInit {
       for (let p of this.dataService.calc.allePunkteBoden) {
         const point = vecToPoint(p);
 
-        rtx.beginPath();
-        rtx.arc(point.x, point.y, 2, 0, 2 * Math.PI, false);
-        rtx.fillStyle = 'green';
-        rtx.fill();
-        rtx.lineWidth = 5;
-        rtx.strokeStyle = '#003300';
-        rtx.stroke();
+        if (this.punkte === 'beides' || (this.punkte === 'vorne' && p.vorne) || (this.punkte === 'hinten' && !p.vorne)) {
+          rtx.beginPath();
+          rtx.arc(point.x, point.y, 2, 0, 2 * Math.PI, false);
+          rtx.fillStyle = p.vorne ? 'green' : 'red';
+          rtx.fill();
+          rtx.lineWidth = 2;
+          rtx.strokeStyle = 'black';
+          rtx.stroke();
+        }
       }
     }
   }

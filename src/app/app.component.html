@@ -18,9 +18,17 @@
     <br>
 
     @if (this.dataService.calc) {
-      <app-drawer [punkte]="false"></app-drawer><br>
+      <p>Nur die Blöcke:</p>
+      <app-drawer [punkte]="'nein'"></app-drawer><br>
+      <p>Nur die Punkte:</p>
       <app-drawer [bloecke]="false"></app-drawer><br>
-      <app-drawer></app-drawer>
+      <p>Nur die vorderen Punkte:</p>
+      <app-drawer [bloecke]="false" [punkte]="'vorne'"></app-drawer><br>
+      <p>Nur die hinteren Punkte:</p>
+      <app-drawer [bloecke]="false" [punkte]="'hinten'"></app-drawer><br>
+      <p>Alles zusammen:</p>
+      <app-drawer></app-drawer><br>
+      <p>Liste der Punkte:</p>
       <app-point-view></app-point-view>
     }
 
