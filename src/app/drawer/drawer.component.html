@@ -1,1 +1,4 @@
-<canvas #canv id="canvas"></canvas>
+<canvas #canv id="canvas"></canvas><br>
+<label>Auflösung: </label><input min="30" max="500" [(ngModel)]="this.aufloesung" (change)="this.draw()" type="range">
+<br><label>Male Zahlen: </label><input type="checkbox" [(ngModel)]="this.zahlen" (change)="this.draw()">
+<br>

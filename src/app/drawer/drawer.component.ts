@@ -1,11 +1,14 @@
 import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import {DataService} from "../data.service";
 import {Punkt, Vector} from "../global/calculator";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-drawer',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './drawer.component.html',
   styleUrl: './drawer.component.css'
 })
@@ -22,11 +25,22 @@ export class DrawerComponent implements AfterViewInit {
     })
   }
 
+  private _aufloesung: number = 100;
+  public get aufloesung(): number {
+    return this._aufloesung;
+  }
+  public set aufloesung(value: number) {
+    this._aufloesung = value;
+    //this.draw();
+  }
+
+  public zahlen: boolean = true;
+
   public draw() {
     if (this.canv) {
       // Get Info about canvas
       const canvas = this.canv.nativeElement;
-      const factor = 30;
+      const factor = this.aufloesung;
       const daten = this.dataService.getDaten();
       canvas.width = Math.abs(daten.rechts - daten.links) * factor;
       canvas.height = Math.abs(daten.oben - daten.unten) * factor;
@@ -116,8 +130,13 @@ export class DrawerComponent implements AfterViewInit {
 
   public drawPoints(rtx: CanvasRenderingContext2D, vecToPoint: (vec: Vector) => Punkt) {
     if (this.dataService.calc && this.dataService.calc.allePunkteBoden) {
-      for (let p of this.dataService.calc.allePunkteBoden) {
+      const punkte = this.dataService.calc.allePunkteBoden.slice().sort((a, b) => {
+        return a.x - b.x
+      });
+      for (let i = 0; i < punkte.length; i++) {
+        const p = punkte[i];
         const point = vecToPoint(p);
+        const offset = 5;
 
         if (this.punkte === 'beides' || (this.punkte === 'vorne' && p.vorne) || (this.punkte === 'hinten' && !p.vorne)) {
           rtx.beginPath();
@@ -127,6 +146,9 @@ export class DrawerComponent implements AfterViewInit {
           rtx.lineWidth = 2;
           rtx.strokeStyle = 'black';
           rtx.stroke();
+          if (this.zahlen) {
+            rtx.fillText((i + 1).toString(), point.x + offset, point.y + offset);
+          }
         }
       }
     }

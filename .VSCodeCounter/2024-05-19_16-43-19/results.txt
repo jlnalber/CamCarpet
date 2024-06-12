@@ -1,0 +1,81 @@
+Date : 2024-05-19 16:43:19
+Directory : c:\Users\alber\WebstormProjects\CamCarpet
+Total : 40 files,  13596 codes, 43 comments, 192 blanks, all 13831 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          5 |     12,662 |          2 |          5 |     12,669 |
+| TypeScript         |         16 |        650 |         22 |        128 |        800 |
+| HTML               |          8 |        125 |          0 |         22 |        147 |
+| CSS                |          7 |        104 |         18 |         20 |        142 |
+| JSON with Comments |          1 |         31 |          1 |          1 |         33 |
+| Markdown           |          1 |         14 |          0 |         14 |         28 |
+| JavaScript         |          2 |         10 |          0 |          2 |         12 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                      | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                         |         40 |     13,596 |         43 |        192 |     13,831 |
+| . (Files)                                                                                 |          7 |     12,707 |          3 |         20 |     12,730 |
+| docs                                                                                      |          5 |         39 |          0 |          5 |         44 |
+| src                                                                                       |         28 |        850 |         40 |        167 |      1,057 |
+| src (Files)                                                                               |          3 |         62 |         18 |         12 |         92 |
+| src\app                                                                                   |         25 |        788 |         22 |        155 |        965 |
+| src\app (Files)                                                                           |          8 |        239 |          0 |         45 |        284 |
+| src\app\drawer                                                                            |          4 |        140 |          6 |         25 |        171 |
+| src\app\global                                                                            |          1 |        180 |         16 |         35 |        231 |
+| src\app\input                                                                             |          4 |         66 |          0 |         14 |         80 |
+| src\app\point-view                                                                        |          4 |        117 |          0 |         21 |        138 |
+| src\app\size                                                                              |          4 |         46 |          0 |         15 |         61 |
++-------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                  | language           | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| c:\Users\alber\WebstormProjects\CamCarpet\README.md                                       | Markdown           |         14 |          0 |         14 |         28 |
+| c:\Users\alber\WebstormProjects\CamCarpet\angular.json                                    | JSON               |         95 |          0 |          1 |         96 |
+| c:\Users\alber\WebstormProjects\CamCarpet\docs\404.html                                   | HTML               |         14 |          0 |          1 |         15 |
+| c:\Users\alber\WebstormProjects\CamCarpet\docs\index.html                                 | HTML               |         14 |          0 |          1 |         15 |
+| c:\Users\alber\WebstormProjects\CamCarpet\docs\main-V2NZMARG.js                           | JavaScript         |          8 |          0 |          1 |          9 |
+| c:\Users\alber\WebstormProjects\CamCarpet\docs\polyfills-A7MJM4D4.js                      | JavaScript         |          2 |          0 |          1 |          3 |
+| c:\Users\alber\WebstormProjects\CamCarpet\docs\styles-U5SMLSMX.css                        | CSS                |          1 |          0 |          1 |          2 |
+| c:\Users\alber\WebstormProjects\CamCarpet\package-lock.json                               | JSON               |     12,503 |          0 |          1 |     12,504 |
+| c:\Users\alber\WebstormProjects\CamCarpet\package.json                                    | JSON               |         38 |          0 |          1 |         39 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\app.component.css                       | CSS                |         12 |          0 |          2 |         14 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\app.component.html                      | HTML               |         32 |          0 |          8 |         40 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\app.component.spec.ts                   | TypeScript         |         25 |          0 |          5 |         30 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\app.component.ts                        | TypeScript         |         18 |          0 |          2 |         20 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\app.config.ts                           | TypeScript         |          6 |          0 |          3 |          9 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\app.routes.ts                           | TypeScript         |          2 |          0 |          2 |          4 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\data.service.spec.ts                    | TypeScript         |         12 |          0 |          5 |         17 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\data.service.ts                         | TypeScript         |        132 |          0 |         18 |        150 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\drawer\drawer.component.css             | CSS                |          4 |          0 |          1 |          5 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\drawer\drawer.component.html            | HTML               |          1 |          0 |          1 |          2 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\drawer\drawer.component.spec.ts         | TypeScript         |         18 |          0 |          6 |         24 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\drawer\drawer.component.ts              | TypeScript         |        117 |          6 |         17 |        140 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\global\calculator.ts                    | TypeScript         |        180 |         16 |         35 |        231 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\input\input.component.css               | CSS                |         23 |          0 |          5 |         28 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\input\input.component.html              | HTML               |         13 |          0 |          1 |         14 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\input\input.component.spec.ts           | TypeScript         |         18 |          0 |          6 |         24 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\input\input.component.ts                | TypeScript         |         12 |          0 |          2 |         14 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\point-view\point-view.component.css     | CSS                |         20 |          0 |          1 |         21 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\point-view\point-view.component.html    | HTML               |         26 |          0 |          3 |         29 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\point-view\point-view.component.spec.ts | TypeScript         |         18 |          0 |          6 |         24 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\point-view\point-view.component.ts      | TypeScript         |         53 |          0 |         11 |         64 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\size\size.component.css                 | CSS                |          0 |          0 |          1 |          1 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\size\size.component.html                | HTML               |         12 |          0 |          6 |         18 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\size\size.component.spec.ts             | TypeScript         |         18 |          0 |          6 |         24 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\app\size\size.component.ts                  | TypeScript         |         16 |          0 |          2 |         18 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\index.html                                  | HTML               |         13 |          0 |          1 |         14 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\main.ts                                     | TypeScript         |          5 |          0 |          2 |          7 |
+| c:\Users\alber\WebstormProjects\CamCarpet\src\styles.css                                  | CSS                |         44 |         18 |          9 |         71 |
+| c:\Users\alber\WebstormProjects\CamCarpet\tsconfig.app.json                               | JSON               |         13 |          1 |          1 |         15 |
+| c:\Users\alber\WebstormProjects\CamCarpet\tsconfig.json                                   | JSON with Comments |         31 |          1 |          1 |         33 |
+| c:\Users\alber\WebstormProjects\CamCarpet\tsconfig.spec.json                              | JSON               |         13 |          1 |          1 |         15 |
+| Total                                                                                     |                    |     13,596 |         43 |        192 |     13,831 |
++-------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
